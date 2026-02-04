@@ -11,6 +11,9 @@ print("Attend both classes: ", both_class)
 allStudents = monday_class or wednesday_class
 print("Attend either class: ", allStudents)
 
+onlyMondayClass = monday_class - wednesday_class
+print("Only attend Monday class: ", onlyMondayClass)
+
 onlyOne = monday_class ^ wednesday_class
 print("Only one class", onlyOne)
 
