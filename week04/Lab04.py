@@ -1,4 +1,6 @@
 # Question 1: Robot Return to Origin
+print(range(3))
+
 
 def robot_returns_to_origin(moves):
     # Initialize starting position
@@ -45,6 +47,8 @@ def two_sum_brute_force(numbers, target):
     pass
 
 # Part B: Optimized with Dictionary
+
+
 def two_sum_optimized(numbers, target):
     seen = {}  # Dictionary to store {number: index}
     # TODO: Loop through numbers, check if needed value exists in seen
@@ -79,7 +83,7 @@ for numbers, target in test_cases:
 def shuffle_array(nums, n):
     # Step 1: Split into two halves using slicing
     first_half = nums[0:n]    # TODO: slice from start to n
-    second_half = nums[n:-1]   # TODO: slice from n to end
+    second_half = nums[n:]   # TODO: slice from n to end
 
     # Step 2: Create empty result list
     result = []
@@ -87,10 +91,11 @@ def shuffle_array(nums, n):
     # Step 3: Interleave using a for loop
     # TODO: Loop through range(n) and append alternating elements
     for i in range(n):
-        result[i] = 
-
+        result.append(first_half[i])
+        result.append(second_half[i])
 
     return result
+
 
 # Test cases
 test_cases = [
@@ -119,8 +124,14 @@ for nums, n in test_cases:
 def count_characters(s):
     counts = {}
     # TODO: Loop through string and count each character
-    # If character exists in counts, increment it
-    # If not, set it to 1
+    for char in s:
+        if char in counts:
+            # If character exists in counts, increment it
+            counts[char] += 1
+        else:
+            # If not, set it to 1
+            counts[char] = 1
+
     return counts
 
 # Main function: Find first unique character
@@ -130,10 +141,15 @@ def first_unique_character(s):
 
     # Step 2: Loop through string with index to find first unique
     # TODO: Use for i in range(len(s)) to check each character
-    # Return i if char_counts[s[i]] == 1
+    for i in range(len(s)):
+        # Return i if char_counts[s[i]] == 1
+        if char_counts[s[i]] == 1:
+            return i
+
 
     # Step 3: Return -1 if no unique character found
     return -1
+
 
 # Test cases
 test_strings = ["leetcode", "loveleetcode", "aabb", "python", "aabbcc"]
@@ -142,9 +158,11 @@ for s in test_strings:
     index = first_unique_character(s)
 
     if index != -1:
-        print("First unique character in '" + s + "': index " + str(index) + " (character: '" + s[index] + "')")
+        print("First unique character in '" + s + "': index " +
+              str(index) + " (character: '" + s[index] + "')")
     else:
-        print("First unique character in '" + s + "': index -1 (no unique character)")
+        print("First unique character in '" + s +
+              "': index -1 (no unique character)")
 
     # Show the character counts for understanding
     counts = count_characters(s)
