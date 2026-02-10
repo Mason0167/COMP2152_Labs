@@ -146,7 +146,6 @@ def first_unique_character(s):
         if char_counts[s[i]] == 1:
             return i
 
-
     # Step 3: Return -1 if no unique character found
     return -1
 
