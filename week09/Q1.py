@@ -1,6 +1,6 @@
 # ============================================================
 #  WEEK 09 LAB — Q1: SYSTEM INFORMATION REPORTER
-#  COMP2152 — [Your Name Here]
+#  COMP2152 — Cheng-Yeh Tsai
 # ============================================================
 
 import os
