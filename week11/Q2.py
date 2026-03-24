@@ -1,6 +1,6 @@
 # ============================================================
 #  WEEK 11 LAB — Q2: PASSWORD STRENGTH CHECKER
-#  COMP2152 — [Your Name Here]
+#  COMP2152 — Cheng-Yeh Tsai
 # ============================================================
 #
 #  For the term project, you'll be looking for weak passwords
@@ -17,13 +17,16 @@ class PasswordChecker:
     #     "admin", "password", "123456", "root", "guest", "letmein", "welcome"
     #   Create an empty list self.history
     def __init__(self):
-        pass
+        self.command_passwords = ["admin", "password", "guest", "letmein"]
+        self.history = []
+
 
     # TODO: Write check_common(self, password)
     #   Return True if password.lower() is in self.common_passwords
     #   Return False otherwise
     def check_common(self, password):
-        pass
+        return password.lower() in self.command_passwords
+
 
     # TODO: Write check_strength(self, password)
     #   has_length = len(password) >= 8
@@ -31,7 +34,11 @@ class PasswordChecker:
     #   has_special = any(c in "!@#$%^&*" for c in password)
     #   Return a dictionary: {"length": has_length, "digit": has_digit, "special": has_special}
     def check_strength(self, password):
-        pass
+        has_length = len(password) >= 8
+        has_degit = any(c.isdigit() for c in password)
+        has_special = any(c in "!@#$%^&*()" for c in password)
+
+        return {"Length": has_length, "digit": has_degit, "special": has_special}
 
     # TODO: Write evaluate(self, password)
     #   1. If check_common(password) is True:
@@ -44,7 +51,22 @@ class PasswordChecker:
     #   3. Append (password, result) to self.history
     #   4. Return result
     def evaluate(self, password):
-        pass
+        if self.check_common(password):
+            result = "WEAK (common password)"
+
+        else:
+            strength = self.check_strength(password)
+            score = sum(strength.values())
+            if score <= 1:
+                result = "WEAK (common password)"
+            elif score == 2:
+                result = "MEDIUM"
+            else:
+                result = "STRONG"
+
+        self.history.append((password, result))
+
+        return result
 
 
 # --- Main (provided) ---

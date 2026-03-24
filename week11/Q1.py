@@ -31,7 +31,7 @@ class SimpleScanner:
     def scan_port(self, port):
         try:
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            s.timeout(1)
+            s.settimeout(1)
 
             result = s.connect_ex((self.target, port))
             if result == 0:
