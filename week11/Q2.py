@@ -84,6 +84,7 @@ if __name__ == "__main__":
         result = checker.evaluate(pw)
         if result:
             print(f"  {pw:<15} → {result}")
+            
 
     print("\n--- Check History ---")
     if hasattr(checker, 'history') and checker.history:
