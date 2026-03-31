@@ -20,10 +20,12 @@ class Scanner:
     #   Otherwise: print each result with "  " indent
     def display_results(self):
         print(f"Results for {self.target}:")
+
         if not self.results:
             print(" (no results)")
         else:
-            print(f"    {self.results}  ")
+            for r in self.results:
+                print(f"    {r}")
 
 
 
@@ -47,7 +49,7 @@ class PortScanner(Scanner):
     def scan(self):
         for port in self.ports:
             try:
-                sock = socket.socket(socket.AF_INET, socket.SOCK.STREM)
+                sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                 sock.settimeout(1)
                 result = sock.connect_ex((self.target, port))
                 if result == 0:
@@ -68,7 +70,7 @@ class HTTPScanner(Scanner):
     #   Store self.paths (a list of URL paths like "/", "/admin")
     def __init__(self, target, paths):
         super().__init__(target)
-        self.ports = paths
+        self.paths = paths
 
     # TODO: Write scan(self)
     #   Loop through self.paths
@@ -77,7 +79,7 @@ class HTTPScanner(Scanner):
     #       Append f"{path} → {response.status} (accessible)" to self.results
     #     Except: Append f"{path} → NOT FOUND" to self.results
     def scan(self):
-        for path in self.pathas:
+        for path in self.paths:
             try:
                 response = urllib.request.urlopen(f"http://{self.target}{path}")
                 self.results.append(f"{path} → {response.status} (accessible)")

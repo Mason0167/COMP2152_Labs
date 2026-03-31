@@ -42,7 +42,7 @@ class Report:
     #   Return the number of findings in self.findings
     #   This makes len(report) work
     def __len__(self):
-        return len(self.fingings)
+        return len(self.findings)
 
     # TODO: Write __add__(self, other)
     #   Create a new Report with team_name = f"Merged: {self.team_name} + {other.team_name}"
@@ -51,7 +51,7 @@ class Report:
     def __add__(self, other):
         new_report = Report(f"Merged: {self.team_name} + {other.team_name}")
         new_report.findings = self.findings + other.findings
-        return new_report.findings
+        return new_report
 
 # --- Main (provided) ---
 if __name__ == "__main__":
